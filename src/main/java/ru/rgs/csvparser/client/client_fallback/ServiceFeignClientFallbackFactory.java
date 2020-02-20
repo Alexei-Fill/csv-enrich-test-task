@@ -1,9 +1,8 @@
-package ru.rgs.csvparser.client.clientFallback;
+package ru.rgs.csvparser.client.client_fallback;
 
 import feign.hystrix.FallbackFactory;
 import org.springframework.stereotype.Component;
 import ru.rgs.csvparser.client.ServiceFeignClient;
-import ru.rgs.csvparser.entity.dto.ClientRequestDto;
 import ru.rgs.csvparser.entity.dto.ClientResponseDto;
 
 @Component
