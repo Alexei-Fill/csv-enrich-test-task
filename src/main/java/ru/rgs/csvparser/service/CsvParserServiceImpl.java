@@ -69,9 +69,4 @@ public class CsvParserServiceImpl implements CsvParserService {
         return String.join("," ,returnFullName(client), client.getContractDate().toString(),
                 client.getScoring());
     }
-
-
-
-
-
 }
