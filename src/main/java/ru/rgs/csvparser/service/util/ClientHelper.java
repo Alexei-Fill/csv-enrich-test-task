@@ -13,14 +13,14 @@ public final class ClientHelper {
 
     public static String getClientScoring(ClientResponseDto clientResponseDto) {
         String score;
-        switch (clientResponseDto.getStatus().toUpperCase()){
-            case "COMPLETED":
+        switch (clientResponseDto.getStatus()){
+            case COMPLETED:
                 score = String.valueOf(Double.parseDouble(clientResponseDto.getScoringValue()));
                 break;
-            case "NOT_FOUND":
+            case NOT_FOUND:
                 score = "не найден";
                 break;
-            case "FAILED":
+            case FAILED:
                 default:
                     score = "ошибка обработки";
         }

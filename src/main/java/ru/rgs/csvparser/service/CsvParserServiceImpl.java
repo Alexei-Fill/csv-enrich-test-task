@@ -20,6 +20,8 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 import static ru.rgs.csvparser.service.util.ClientHelper.returnFullName;
+import static ru.rgs.csvparser.service.util.Constant.COMMA_DELIMITER;
+import static ru.rgs.csvparser.service.util.Constant.DATA_TIME_FORMAT;
 
 @Slf4j
 @Service
@@ -47,8 +49,8 @@ public class CsvParserServiceImpl implements CsvParserService {
     }
 
     private Client toClient(List<String> row) {
-        return new Client(row.get(0).toUpperCase(), row.get(1).toUpperCase(), row.get(2).toUpperCase(),
-                LocalDate.parse(row.get(3), DateTimeFormatter.ISO_DATE));
+        return Client.builder().firstName(row.get(0).toUpperCase()).lastName(row.get(1).toUpperCase())
+                .middleName(row.get(2).toUpperCase()).contractDate( LocalDate.parse(row.get(3), DateTimeFormatter.ISO_DATE)).build();
     }
 
     private String writeToFile(List<Client> clients) throws IOException {
@@ -61,12 +63,12 @@ public class CsvParserServiceImpl implements CsvParserService {
     }
 
     private String generateOutputFileName() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy_MM_dd__HH_mm_ss");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATA_TIME_FORMAT);
         return String.format("csv-processing-output/output-%s-af.csv", LocalDateTime.now().format(formatter));
     }
 
     private String toCsvRow(Client client) {
-        return String.join("," ,returnFullName(client), client.getContractDate().toString(),
+        return String.join(COMMA_DELIMITER ,returnFullName(client), client.getContractDate().toString(),
                 client.getScoring());
     }
 }
