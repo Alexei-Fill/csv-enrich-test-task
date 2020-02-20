@@ -23,7 +23,7 @@ public final class CsvHelper {
     }
     public static  List<List<String>> readFromFile(Path source, boolean skipColumnTitle) throws IOException {
         List<List<String>> rows = new ArrayList<>();
-        try (Scanner scanner = new Scanner(source, "UTF-8")) {
+        try (Scanner scanner = new Scanner(source, StandardCharsets.UTF_8.name())) {
             if (skipColumnTitle) {
                 scanner.nextLine();
             }
